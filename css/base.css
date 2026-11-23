@@ -1,0 +1,68 @@
+/* Estilos base, tipografía, grid raíz para LiquidGlass y canvas de fondo */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--tx);
+  font: 17px/1.4 "Courier Prime", "Courier New", Courier, monospace;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Raíz LiquidGlass: los cuadros son hijos directos para compartir un único contexto WebGL */
+#lg-root {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(6px, 1fr) minmax(0, 239px) minmax(0, 239px) minmax(6px, 1fr);
+  column-gap: 10px;
+  align-content: start;
+  padding: 14px 0 40px;
+}
+
+#lg-root > :not(#bg-canvas):not(.stat):not(.ov-bg):not(.modal-card) {
+  grid-column: 2 / 4;
+}
+
+#lg-root > .stat.col-l {
+  grid-column: 2 / 3;
+}
+
+#lg-root > .stat.col-r {
+  grid-column: 3 / 4;
+}
+
+/* Canvas de fondo (gradiente ambiental + logo) que muestrea el shader LiquidGlass */
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+#lg-root > :not(#bg-canvas):not(.ov-bg):not(.modal-card) {
+  position: relative;
+  z-index: 1;
+}
+
+h2 {
+  font-size: 19px;
+  margin: 0 0 12px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.foot {
+  text-align: center;
+  margin-top: 22px;
+}

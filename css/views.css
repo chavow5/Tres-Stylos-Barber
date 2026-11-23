@@ -1,0 +1,353 @@
+/* Pantalla de Login */
+.login-card {
+  margin-top: 12vh;
+  padding: 24px 20px;
+}
+
+.login-head {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.login-head h1 {
+  margin: 0 0 6px;
+  font-size: 24px;
+  letter-spacing: -0.02em;
+}
+
+.login-head p {
+  margin: 0;
+  color: var(--mut);
+  font-size: 15px;
+}
+
+/* Barra superior de sincronización con Google Sheets y cierre de sesión */
+.syncbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.logout-btn {
+  color: var(--mut);
+}
+
+.syncbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 13px;
+  border: 1px solid var(--gbd);
+  border-radius: 999px;
+  background: var(--glass);
+  color: var(--tx);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(18px) saturate(1.6);
+  backdrop-filter: blur(18px) saturate(1.6);
+  box-shadow: 0 4px 14px var(--gsh), inset 0 1px 0 var(--ghi);
+}
+
+.sync-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--mut);
+}
+
+.sync-dot.ok {
+  background: var(--ok);
+}
+
+.sync-dot.busy {
+  background: var(--ac);
+}
+
+.sync-dot.err {
+  background: var(--bad);
+}
+
+.sync-dot.off {
+  background: var(--mut);
+}
+
+.hint {
+  margin: 0 0 14px;
+  color: var(--mut);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.hint code {
+  font-size: 13px;
+  padding: 1px 5px;
+  border-radius: 6px;
+  background: var(--glass2);
+}
+
+/* Estilos específicos de pestañas y vistas (Hoy, Clientes, Resumen) */
+.tabs {
+  display: flex;
+  gap: 6px;
+  padding: 6px;
+  margin-bottom: 14px;
+  border-radius: 16px;
+  background: var(--glass);
+  border: 1px solid var(--gbd);
+  -webkit-backdrop-filter: blur(22px) saturate(1.8);
+  backdrop-filter: blur(22px) saturate(1.8);
+  box-shadow:
+    0 8px 28px var(--gsh),
+    inset 0 1px 0 var(--ghi),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.tabs button {
+  flex: 1;
+  padding: 10px 4px;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--mut);
+  font: inherit;
+  font-size: 17px;
+  font-weight: 700;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.tabs button[aria-selected="true"] {
+  background: var(--ac);
+  color: var(--on);
+}
+
+/* Vista Hoy */
+#res {
+  margin-top: 6px;
+}
+
+#cut {
+  margin-top: 10px;
+  font-size: 17px;
+}
+
+.f-price {
+  margin-bottom: 16px;
+}
+
+.section-label {
+  margin: 6px 2px 8px;
+}
+
+.pr {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.pr button {
+  flex: 1 1 0;
+  min-width: 76px;
+  padding: 13px 8px;
+  border: 1.5px solid var(--ln);
+  border-radius: 12px;
+  background: var(--glass2);
+  color: var(--tx);
+  font: inherit;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.pr .ten {
+  background: var(--ac);
+  border-color: var(--ac);
+  color: var(--on);
+}
+
+.pay {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.pay button {
+  padding: 14px 8px;
+  border: 1.5px solid var(--ln);
+  border-radius: 12px;
+  background: var(--glass2);
+  color: var(--tx);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.pay button[aria-pressed="true"] {
+  background: var(--ac);
+  border-color: var(--ac);
+  color: var(--on);
+}
+
+/* Vista Resumen */
+.rng {
+  display: flex;
+  gap: 6px;
+  padding: 5px;
+  margin-bottom: 12px;
+  border-radius: 16px;
+  background: var(--glass);
+  border: 1px solid var(--gbd);
+  -webkit-backdrop-filter: blur(22px) saturate(1.8);
+  backdrop-filter: blur(22px) saturate(1.8);
+  box-shadow:
+    0 8px 28px var(--gsh),
+    inset 0 1px 0 var(--ghi),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.rng button {
+  flex: 1;
+  padding: 9px 4px;
+  border: 0;
+  background: transparent;
+  color: var(--mut);
+  font: inherit;
+  font-weight: 700;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.rng button[aria-pressed="true"] {
+  background: var(--ac);
+  color: var(--on);
+}
+
+.mnav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: -2px 0 12px;
+}
+
+.mnav button {
+  width: 56px;
+  padding: 8px;
+  border: 1px solid var(--gbd);
+  border-radius: 12px;
+  background: var(--glass);
+  color: var(--tx);
+  font: inherit;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+  -webkit-backdrop-filter: blur(22px) saturate(1.8);
+  backdrop-filter: blur(22px) saturate(1.8);
+  box-shadow:
+    0 8px 28px var(--gsh),
+    inset 0 1px 0 var(--ghi),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.mnav button:disabled {
+  opacity: 0.3;
+}
+
+.mnav b {
+  font-size: 19px;
+}
+
+.eyebar {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 0 10px;
+}
+
+.eyeb {
+  width: 56px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--gbd);
+  border-radius: 12px;
+  background: var(--glass);
+  color: var(--ac);
+  padding: 0;
+  -webkit-backdrop-filter: blur(22px) saturate(1.8);
+  backdrop-filter: blur(22px) saturate(1.8);
+  box-shadow:
+    0 8px 28px var(--gsh),
+    inset 0 1px 0 var(--ghi),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.eye {
+  border: 0;
+  background: transparent;
+  color: var(--ac);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 4px 2px;
+}
+
+.stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  background: var(--glass);
+  border: 1px solid var(--gbd);
+  border-radius: 18px;
+  padding: 14px;
+  -webkit-backdrop-filter: blur(22px) saturate(1.8);
+  backdrop-filter: blur(22px) saturate(1.8);
+  box-shadow:
+    0 8px 28px var(--gsh),
+    inset 0 1px 0 var(--ghi),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.stat .k {
+  color: var(--mut);
+  font-size: 15px;
+}
+
+.stat .v {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+#s-nd {
+  color: var(--mut);
+  font-size: 15px;
+  margin: 0 2px;
+}
+
+.hist-label {
+  margin: 20px 2px 0;
+}
+
+.dh {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin: 16px 2px 8px;
+}
+
+.dh b {
+  font-size: 16px;
+}
+
+.dh span {
+  color: var(--mut);
+  font-size: 15px;
+  white-space: nowrap;
+}

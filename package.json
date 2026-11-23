@@ -1,0 +1,14 @@
+{
+  "name": "tres-stylos-barber",
+  "version": "1.0.0",
+  "description": "App de gestión para Tres Stylos Barber",
+  "private": true,
+  "scripts": {
+    "dev": "node dev-server.js",
+    "hash": "node scripts/hash-password.js",
+    "sync:liquidglass": "node -e \"const fs=require('fs');const s=fs.readFileSync('node_modules/@ybouane/liquidglass/dist/index.js','utf8').replace(/\\/\\/# sourceMappingURL=index\\.js\\.map\\s*$/,'');fs.mkdirSync('js/vendor',{recursive:true});fs.writeFileSync('js/vendor/liquidglass.js',s);\""
+  },
+  "dependencies": {
+    "@ybouane/liquidglass": "^1.0.3"
+  }
+}
