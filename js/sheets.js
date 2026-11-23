@@ -73,7 +73,7 @@
 
     if (!isConfigured()) {
       dot.classList.add("off");
-      txt.textContent = "Google Sheets · Sin conectar";
+      txt.textContent = "Excel · Sin conectar";
       return;
     }
 
@@ -102,8 +102,8 @@
     dot.classList.add("ok");
     var ts = getLastSync();
     txt.textContent = ts
-      ? "Google Sheets · " + u.hora(ts)
-      : "Google Sheets · Conectado";
+      ? "Excel · " + u.hora(ts)
+      : "Excel · Conectado";
   }
 
   function checkProxyStatus() {
@@ -236,7 +236,7 @@
 
     syncing = true;
     lastError = "";
-    updateStatusUI("busy", "Guardando en Sheets…");
+    updateStatusUI("busy", "Guardando en Excel…");
 
     function next() {
       if (!queue.length) {
@@ -303,12 +303,12 @@
         .then(function (data) {
           syncing = false;
           applyRemoteData(data);
-          if (showToast) u.toast("Sincronizado con Sheets ✓");
+          if (showToast) u.toast("Sincronizado con Excel ✓");
           return true;
         })
         .catch(function (err) {
           syncing = false;
-          lastError = err && err.message ? err.message : "Error al leer Sheets";
+          lastError = err && err.message ? err.message : "Error al leer Excel";
           updateStatusUI("err");
           if (showToast) u.toast("No se pudo conectar");
           return false;
@@ -320,7 +320,7 @@
     if (!isConfigured()) return Promise.resolve(false);
     syncing = true;
     lastError = "";
-    updateStatusUI("busy", "Subiendo a Sheets…");
+    updateStatusUI("busy", "Subiendo a Excel…");
 
     return postAction({
       action: "syncAll",
@@ -339,7 +339,7 @@
         }
         setLastSync(Date.now());
         updateStatusUI("ok");
-        if (showToast) u.toast("Datos subidos a Sheets ✓");
+        if (showToast) u.toast("Datos subidos a Excel ✓");
         return true;
       })
       .catch(function (err) {
@@ -451,7 +451,7 @@
         $("sh-save").textContent = "Guardar URL manual";
         if (ok) {
           closeModal();
-          u.toast("Google Sheets conectado ✓");
+          u.toast("Excel conectado ✓");
         } else {
           $("sh-err").textContent =
             lastError || "No se pudo conectar. Verificá la URL y permisos.";

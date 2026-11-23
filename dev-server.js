@@ -17,6 +17,7 @@ const MIME = {
   ".png": "image/png",
   ".svg": "image/svg+xml",
   ".json": "application/json; charset=utf-8",
+  ".webmanifest": "application/manifest+json; charset=utf-8",
   ".ico": "image/x-icon",
 };
 
