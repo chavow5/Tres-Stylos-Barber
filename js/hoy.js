@@ -43,9 +43,10 @@
     btn.textContent = "+ Cliente nuevo";
     btn.classList.remove("need-create");
 
+    var todayStr = new Date().toDateString();
     $("res").innerHTML = list
       .map(function (c) {
-        return u.rowHtml(c);
+        return u.rowHtml(c, "", todayStr);
       })
       .join("");
   }
@@ -86,42 +87,37 @@
   }
 
   function renderToday() {
-    var today = App.state.cuts
-      .slice()
-      .sort(function (a, b) {
-        return b.ts - a.ts;
-      })
-      .slice(0, 1);
+    var cuts = App.state.cuts;
+    var latest = null;
+    for (var i = 0; i < cuts.length; i++) {
+      if (!latest || cuts[i].ts >= latest.ts) latest = cuts[i];
+    }
 
-    if (!today.length) {
+    if (!latest) {
       $("list").innerHTML =
         '<div class="empty">Todavía no cargaste ningún corte.</div>';
       return;
     }
 
-    $("list").innerHTML = today
-      .map(function (e) {
-        var c = u.byId(e.cid);
-        return (
-          '<div class="row"><div class="m"><div class="n">' +
-          u.esc(c ? u.full(c) : "Cliente borrado") +
-          '</div><div class="s">' +
-          u.esc(e.cut) +
-          " · " +
-          u.fdate(e.ts) +
-          " " +
-          u.hora(e.ts) +
-          (e.pay
-            ? " · " + (e.pay === "transferencia" ? "Transferencia" : "Efectivo")
-            : "") +
-          "</div></div>" +
-          (e.price ? '<div class="p">' + u.mm(e.price) + "</div>" : "") +
-          '<button class="del" data-id="' +
-          e.id +
-          '">Borrar</button></div>'
-        );
-      })
-      .join("");
+    var e = latest;
+    var c = u.byId(e.cid);
+    $("list").innerHTML =
+      '<div class="row"><div class="m"><div class="n">' +
+      u.esc(c ? u.full(c) : "Cliente borrado") +
+      '</div><div class="s">' +
+      u.esc(e.cut) +
+      " · " +
+      u.fdate(e.ts) +
+      " " +
+      u.hora(e.ts) +
+      (e.pay
+        ? " · " + (e.pay === "transferencia" ? "Transferencia" : "Efectivo")
+        : "") +
+      "</div></div>" +
+      (e.price ? '<div class="p">' + u.mm(e.price) + "</div>" : "") +
+      '<button class="del" data-id="' +
+      e.id +
+      '">Borrar</button></div>';
   }
 
   function pickCut(c) {
@@ -151,7 +147,14 @@
   }
 
   function init() {
-    $("cs").oninput = renderRes;
+    var searchRaf = 0;
+    $("cs").oninput = function () {
+      if (searchRaf) return;
+      searchRaf = requestAnimationFrame(function () {
+        searchRaf = 0;
+        renderRes();
+      });
+    };
     $("cs").onkeydown = function (ev) {
       if (ev.key !== "Enter") return;
       var qTrim = $("cs").value.trim();

@@ -4,15 +4,24 @@
 
   var $ = App.utils.$;
 
+  function renderActiveView() {
+    var view = App.state.view || "hoy";
+    if (view === "hoy") {
+      App.hoy.renderSel();
+      App.hoy.renderChips();
+      App.hoy.renderToday();
+      App.hoy.renderPay();
+    } else if (view === "cli") {
+      App.clientes.renderClients();
+    } else if (view === "res") {
+      App.resumen.renderStats();
+      App.resumen.renderHist();
+      App.resumen.setEyes();
+    }
+  }
+
   function renderAll() {
-    App.hoy.renderSel();
-    App.hoy.renderChips();
-    App.hoy.renderToday();
-    App.clientes.renderClients();
-    App.hoy.renderPay();
-    App.resumen.renderStats();
-    App.resumen.renderHist();
-    App.resumen.setEyes();
+    renderActiveView();
     if (App.glass) App.glass.markChanged();
   }
 
@@ -30,13 +39,11 @@
     $("t-cli").setAttribute("aria-selected", w === "cli");
     $("t-res").setAttribute("aria-selected", w === "res");
 
-    if (w === "cli") App.clientes.renderClients();
-    if (w === "res") {
-      App.resumen.renderStats();
-      App.resumen.renderHist();
-    } else {
+    if (w !== "res") {
       $("mnav").hidden = true;
     }
+
+    renderActiveView();
 
     if (App.glass) App.glass.sync();
   }
@@ -62,7 +69,8 @@
     App.hoy.init();
     App.clientes.init();
     App.resumen.init();
-    renderAll();
+    App.resumen.setEyes();
+    renderActiveView();
     renderLogo();
 
     if (App.auth) {

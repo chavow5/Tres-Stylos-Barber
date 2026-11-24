@@ -43,10 +43,13 @@
     } catch (e) {
       st.oculto = false;
     }
+
+    if (u.invalidateIndex) u.invalidateIndex();
   }
 
   function save() {
     var st = App.state;
+    if (App.utils && App.utils.invalidateIndex) App.utils.invalidateIndex();
     try {
       localStorage.setItem(K.CLIENTS, JSON.stringify(st.clients));
       localStorage.setItem(K.CUTS, JSON.stringify(st.cuts));

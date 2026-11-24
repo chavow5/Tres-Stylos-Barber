@@ -15,22 +15,25 @@
 
   function renderStats() {
     var st = App.state;
-    var l = st.cuts.filter(function (e) {
-      return u.inRange(e.ts);
-    });
+    var rangeCtx = u.getRangeContext();
+    var cuts = st.cuts;
+    var count = 0;
     var tot = 0;
     var tr = 0;
     var ef = 0;
     var nd = 0;
 
-    l.forEach(function (e) {
+    for (var i = 0; i < cuts.length; i++) {
+      var e = cuts[i];
+      if (!u.inRange(e.ts, rangeCtx)) continue;
+      count++;
       tot += Number(e.price) || 0;
       if (e.pay === "transferencia") tr++;
       else if (e.pay === "efectivo") ef++;
       else nd++;
-    });
+    }
 
-    $("s-n").textContent = l.length;
+    $("s-n").textContent = count;
     $("s-t").textContent = u.mm(tot);
     $("s-tr").textContent = tr;
     $("s-ef").textContent = ef;
@@ -69,30 +72,29 @@
     var tpl = document.createElement("template");
     tpl.innerHTML = html;
 
+    var frag = document.createDocumentFragment();
     Array.prototype.slice.call(tpl.content.children).forEach(function (node) {
       node.setAttribute("data-hist-item", "");
       node.setAttribute("data-view", "res");
       if (isHidden) node.hidden = true;
-      root.appendChild(node);
+      frag.appendChild(node);
     });
-
-    if (App.state.view === "res" && App.glass) {
-      App.glass.sync();
-    }
+    root.appendChild(frag);
   }
 
   function renderHist() {
     if (!App.state.cuts.length) {
       setHistMarkup(
-        '<div class="card lg-panel" data-lg="card"><div class="empty">Acá va a aparecer el historial, día por día.</div></div>'
+        '<div class="card lg-panel hist-card" data-lg="card"><div class="empty">Acá va a aparecer el historial, día por día.</div></div>'
       );
       return;
     }
 
+    var rangeCtx = u.getRangeContext();
     var groups = [];
     App.state.cuts
       .filter(function (e) {
-        return u.inRange(e.ts);
+        return u.inRange(e.ts, rangeCtx);
       })
       .sort(function (a, b) {
         return b.ts - a.ts;
@@ -107,11 +109,12 @@
 
     if (!groups.length) {
       setHistMarkup(
-        '<div class="card lg-panel" data-lg="card"><div class="empty">No hay cortes en este período.</div></div>'
+        '<div class="card lg-panel hist-card" data-lg="card"><div class="empty">No hay cortes en este período.</div></div>'
       );
       return;
     }
 
+    var todayStr = rangeCtx.todayStr;
     var html = groups
       .map(function (g) {
         var tot = g.items.reduce(function (s, e) {
@@ -119,12 +122,12 @@
         }, 0);
         return (
           '<div class="dh"><b>' +
-          u.esc(u.dayTitle(g.ts)) +
+          u.esc(u.dayTitle(g.ts, todayStr)) +
           "</b><span>" +
           g.items.length +
           (g.items.length === 1 ? " corte" : " cortes") +
           (tot ? " · " + u.mm(tot) : "") +
-          '</span></div><div class="card lg-panel" data-lg="card"><div>' +
+          '</span></div><div class="card lg-panel hist-card" data-lg="card"><div>' +
           g.items
             .map(function (e) {
               var c = u.byId(e.cid);

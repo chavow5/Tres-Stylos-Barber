@@ -25,12 +25,14 @@
 </head>
 <body>
   <main id="lg-root">
-    <canvas id="bg-canvas" aria-hidden="true"></canvas>
+    <div id="bg-scene" aria-hidden="true">
+      <img id="bg-watermark" src="assets/img/logo-watermark.png" alt="" width="512" height="512" decoding="async">
+    </div>
 
     <!-- Pantalla de acceso (Login) -->
     <div class="card lg-panel login-card" id="login-card" data-lg="card" hidden>
       <div class="login-head">
-        <img src="assets/img/icon-192.png" alt="Tres Stylos" class="login-logo">
+        <img src="assets/img/icon-192.png" alt="Tres Stylos" class="login-logo" width="72" height="72" decoding="async">
         <h1>Tres Stylos</h1>
         <p>Ingresá con tu usuario y contraseña</p>
       </div>
@@ -50,7 +52,7 @@
 
     <header class="brand-bar" data-app hidden>
       <div class="brand">
-        <img src="assets/img/icon-192.png" alt="Tres Stylos" class="brand-logo">
+        <img src="assets/img/icon-192.png" alt="Tres Stylos" class="brand-logo" width="40" height="40" decoding="async">
         <span class="brand-name">Tres Stylos</span>
       </div>
       <div class="brand-actions">
@@ -199,7 +201,7 @@
   <script src="js/hoy.js"></script>
   <script src="js/clientes.js"></script>
   <script src="js/resumen.js"></script>
+  <script src="js/liquid-glass.js"></script>
   <script src="js/app.js"></script>
-  <script type="module" src="js/liquid-glass.js"></script>
 </body>
 </html>

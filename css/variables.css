@@ -10,20 +10,31 @@
   --ok: #1e7a4c;
   --bad: #b3392f;
 
-  --glass: rgba(255, 255, 255, 0.42);
-  --glass2: rgba(255, 255, 255, 0.45);
-  --glass-modal: rgba(251, 250, 248, 0.86);
+  --glass: rgba(255, 255, 255, 0.44);
+  --glass-edge: linear-gradient(
+    155deg,
+    rgba(255, 255, 255, 0.7) 0%,
+    rgba(255, 255, 255, 0.14) 42%,
+    rgba(255, 255, 255, 0.04) 68%,
+    rgba(255, 255, 255, 0.34) 100%
+  );
+  --glass2: rgba(255, 255, 255, 0.48);
+  --glass-modal: rgba(251, 250, 248, 0.88);
   --gbd: rgba(255, 255, 255, 0.72);
-  --ghi: rgba(255, 255, 255, 0.95);
-  --gsh: rgba(40, 55, 80, 0.16);
+  --ghi: rgba(255, 255, 255, 0.94);
+  --ghi-bot: rgba(255, 255, 255, 0.28);
+  --gsh: rgba(31, 48, 74, 0.14);
 
   --b1: #9dc0f5;
   --b2: #f4c6a3;
   --b3: #a8dec6;
 
+  --wm-opacity: 0.13;
+  --wm-filter: none;
+  --wm-custom-blend: multiply;
+  --wm-custom-filter: none;
+
   box-sizing: border-box;
-  padding-top: env(safe-area-inset-top, 0px);
-  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -39,16 +50,29 @@
     --ok: #5cc08a;
     --bad: #e5776d;
 
-    --glass: rgba(34, 38, 46, 0.46);
+    --glass: rgba(32, 36, 44, 0.54);
+    --glass-edge: linear-gradient(
+      155deg,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(255, 255, 255, 0.04) 40%,
+      rgba(255, 255, 255, 0.01) 70%,
+      rgba(255, 255, 255, 0.11) 100%
+    );
     --glass2: rgba(255, 255, 255, 0.08);
-    --glass-modal: rgba(28, 31, 36, 0.88);
+    --glass-modal: rgba(26, 29, 34, 0.9);
     --gbd: rgba(255, 255, 255, 0.18);
-    --ghi: rgba(255, 255, 255, 0.24);
-    --gsh: rgba(0, 0, 0, 0.5);
+    --ghi: rgba(255, 255, 255, 0.26);
+    --ghi-bot: rgba(255, 255, 255, 0.08);
+    --gsh: rgba(0, 0, 0, 0.46);
 
     --b1: #284c7a;
     --b2: #5c3930;
     --b3: #1f4f3f;
+
+    --wm-opacity: 0.15;
+    --wm-filter: invert(1);
+    --wm-custom-blend: screen;
+    --wm-custom-filter: invert(1) hue-rotate(180deg);
   }
 }
 
@@ -64,14 +88,27 @@
   --ok: #5cc08a;
   --bad: #e5776d;
 
-  --glass: rgba(34, 38, 46, 0.46);
+  --glass: rgba(32, 36, 44, 0.54);
+  --glass-edge: linear-gradient(
+    155deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0.04) 40%,
+    rgba(255, 255, 255, 0.01) 70%,
+    rgba(255, 255, 255, 0.11) 100%
+  );
   --glass2: rgba(255, 255, 255, 0.08);
-  --glass-modal: rgba(28, 31, 36, 0.88);
+  --glass-modal: rgba(26, 29, 34, 0.9);
   --gbd: rgba(255, 255, 255, 0.18);
-  --ghi: rgba(255, 255, 255, 0.24);
-  --gsh: rgba(0, 0, 0, 0.5);
+  --ghi: rgba(255, 255, 255, 0.26);
+  --ghi-bot: rgba(255, 255, 255, 0.08);
+  --gsh: rgba(0, 0, 0, 0.46);
 
   --b1: #284c7a;
   --b2: #5c3930;
   --b3: #1f4f3f;
+
+  --wm-opacity: 0.15;
+  --wm-filter: invert(1);
+  --wm-custom-blend: screen;
+  --wm-custom-filter: invert(1) hue-rotate(180deg);
 }

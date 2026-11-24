@@ -20,11 +20,10 @@
       return;
     }
 
+    var todayStr = new Date().toDateString();
     $("clist").innerHTML = list
       .map(function (c) {
-        var n = App.state.cuts.filter(function (e) {
-          return e.cid === c.id;
-        }).length;
+        var n = u.visitCount(c.id);
         return u.rowHtml(
           c,
           '<div class="p">' +
@@ -32,7 +31,8 @@
             (n === 1 ? " visita" : " visitas") +
             '</div><button class="del" data-edit="' +
             c.id +
-            '">Editar</button>'
+            '">Editar</button>',
+          todayStr
         );
       })
       .join("");
@@ -78,7 +78,11 @@
   }
 
   function init() {
-    $("q").oninput = renderClients;
+    var filterTimer = 0;
+    $("q").oninput = function () {
+      clearTimeout(filterTimer);
+      filterTimer = setTimeout(renderClients, 50);
+    };
     $("newc2").onclick = function () {
       openForm(null, $("q").value);
     };
